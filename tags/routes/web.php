@@ -12,14 +12,18 @@
 */
 
 use App\Post;
+use Conner\Tagging\Model\Tag;
 
 Route::get('/', function () {
 
-    $post = Post::find(1);
+    $tag1 = Tag::find(1);
+    $tag2 = Tag::find(2);
 
-    $post->tag(['php']);
+    $tag1->setGroup('Backend');
+    $tag2->setGroup('Backend');
 
-    dd($post->tags);
+
+
 
 });
 

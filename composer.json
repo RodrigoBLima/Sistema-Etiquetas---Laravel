@@ -1,5 +1,0 @@
-{
-    "require": {
-        "rtconner/laravel-tagging": "^3.1"
-    }
-}
