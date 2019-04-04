@@ -13,7 +13,12 @@ class PostController extends Controller
         return view('index', compact('posts'));
     }
 
-    public function store(){
-        //guardar
+    public function store(Request $request){
+       $tag = explode(',', $request->tag);
+
+       $post = Post::create($request->all());
+       $post->tag($tags);
+
+       return back()->with('info', 'Post criado com sucesso');
     }
 }
