@@ -11,20 +11,6 @@
 |
 */
 
-use App\Post;
-use Conner\Tagging\Model\Tag;
-
-Route::get('/', function () {
-
-    $tag1 = Tag::find(1);
-    $tag2 = Tag::find(2);
-
-    $tag1->setGroup('Backend');
-    $tag2->setGroup('Backend');
-
-
-
-
-});
-
+Route::get('/', 'PostController@index')->name('posts.index');
+Route::post('guardar-post', 'PostController@store')->name('posts.store');
 
