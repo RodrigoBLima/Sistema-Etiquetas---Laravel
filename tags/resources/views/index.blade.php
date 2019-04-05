@@ -5,86 +5,69 @@
 
         <title>Tags</title>
         <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div>
-                    <h1 class="">Sistema de etiquetas</h1>
+                <div class="col-xs-8 col-xs-offset-2">
+                    <h1 class="page-header">Sistema de etiquetas</h1>
                 </div>
-                <br>
+                <br><br><br><br>
                 <form action="{{ route('posts.store') }}" method="POST">
                     {{ @csrf_field() }}
 
-                    <div class="input-field col s12">
-                            <input placeholder="" name="title" type="text" class="validate">
-                            <label for="first_name">Titulo</label>
+                    <div class="form-group">
+                          <label for="title">Titulo</label>
+                            <input placeholder="" name="title" type="text" class="form-control">
                     </div>
-                    <div class="input-field col s12">
-                            <textarea name="body" class="materialize-textarea" data-length="120" rows="7"></textarea>
+                    <div class="form-group">
+                        <label for="body">Conteúdo</label>
+                            <textarea name="body" class="form-control"
+                             rows="7"></textarea>
 
-                            <label for="first_name">Conteúdo</label>
+
                     </div>
-                    <div class="">
-                        <label for=""></label>
-                        <input type="text" name="tags" data-role="tagsinput">
+                    <div class="form-group well">
+                        <label for="tags">Etiquetas</label>
+                        <input type="text" name="tags" data-role="tagsinput" class="form-control">
                     </div>
-                    <div>
-                        <input value="Enviar" class="btn form-control " type="submit">
+
+                    <div class="form-group">
+                        <input value="Enviar" class="btn btn-primary " type="submit">
                     </div>
 
                 </form>
 
+
+                <br><br><br>
                 <hr>
-
-
                 @foreach ($posts as $post)
-                    <div class="">{{ $post->title }}</div>
-                    <div class="">{{ $post->body }}</div>
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">
+                            {{ $post->title }}
+                          </div>
+                          <div class="panel-body">
+                              {{ $post->body }}
+                          </div>
+                          <div class="panel-footer">
+                               @forelse ($tags as $tag)
+                                   <span class="label label-info">{{ $tag->name }}</span>
+                               @empty
+                                  <em>Nenhuma etiqueta</em>
+                               @endforelse
+                          </div>
+                        </div>
+
+
+
 
                 @endforeach
             </div>
         </div>
-
-
-            <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.chips');
-                    var instances = M.Chips.init(elems, options);
-                  });
-
-                  // Or with jQuery
-
-                  $('.chips').chips();
-                  $('.chips-initial').chips({
-                    data: [{
-                      tag: 'Apple',
-                    }, {
-                      tag: 'Microsoft',
-                    }, {
-                      tag: 'Google',
-                    }],
-                  });
-                  $('.chips-placeholder').chips({
-                    placeholder: 'Enter a tag',
-                    secondaryPlaceholder: '+Tag',
-                  });
-                  $('.chips-autocomplete').chips({
-                    autocompleteOptions: {
-                      data: {
-                        'php': null,
-                        'Laravel': null,
-                        'Vuejs': null,
-                        'Html':null
-                      },
-                      limit: Infinity,
-                      minLength: 1
-                    }
-                  });
-        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
